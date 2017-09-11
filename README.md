@@ -1,11 +1,19 @@
 # doc-basics
-A minimal Sphinx documentation structure
 
-Uses:
+[![Documentation Status](http://readthedocs.org/projects/doc-basics/badge/?version=latest)](http://doc-basics.readthedocs.io/en/latest/?badge=latest)
+
+A minimal Sphinx documentation structure.
+
+Features:
+
 - Python 3
 - Sphinx >= 1.6
-- docs: the root directory for documentation
+- `docs`: the root directory for documentation
 - intersphinx using Python 3
+- supports markdown and restructured text
+- rtd yml build file
+- conda `environment.yml`
+- pip `requirements_docs.txt`
 
 ## Installation
 
