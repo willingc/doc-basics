@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# minimal test docs documentation build configuration file, created by
-# sphinx-quickstart on Sun Sep 10 16:15:49 2017.
+# Minimal docs documentation build configuration file, created by
+# sphinx-quickstart on Sun Sep 10 16:36:35 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -17,36 +17,44 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
 
+# For conversion from markdown (.md) to html
+import recommonmark.parser
+
+# set path
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
-# needs_sphinx = '1.0'
+needs_sphinx = '1.5'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ['sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+# Source parsers for things other than '.rst'
+source_parsers = {
+    '.md': 'recommonmark.parser.CommonMarkParser',
+}
+
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
-#
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
 
 # General information about the project.
-project = 'minimal test docs'
+project = 'Minimal docs'
 copyright = '2017, Carol Willing'
 author = 'Carol Willing'
 
@@ -83,7 +91,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -101,21 +109,21 @@ html_static_path = ['_static']
 #
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-html_sidebars = {
-    '**': [
-        'about.html',
-        'navigation.html',
-        'relations.html',  # needs 'show_related': True theme option to display
-        'searchbox.html',
-        'donate.html',
-    ]
-}
+# html_sidebars = {
+#     '**': [
+#         'about.html',
+#         'navigation.html',
+#         'relations.html',  # needs 'show_related': True theme option to display
+#         'searchbox.html',
+#         'donate.html',
+#     ]
+# }
 
 
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'minimaltestdocsdoc'
+htmlhelp_basename = 'Minimaldocsdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -142,7 +150,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'minimaltestdocs.tex', 'minimal test docs Documentation',
+    (master_doc, 'Minimaldocs.tex', 'Minimal docs Documentation',
      'Carol Willing', 'manual'),
 ]
 
@@ -152,7 +160,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'minimaltestdocs', 'minimal test docs Documentation',
+    (master_doc, 'minimaldocs', 'Minimal docs Documentation',
      [author], 1)
 ]
 
@@ -163,8 +171,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'minimaltestdocs', 'minimal test docs Documentation',
-     author, 'minimaltestdocs', 'One line description of project.',
+    (master_doc, 'Minimaldocs', 'Minimal docs Documentation',
+     author, 'Minimaldocs', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -190,4 +198,15 @@ epub_copyright = copyright
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
 
+# Example configuration for intersphinx: refer to the Python 3 standard library.
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
+}
 
+# -- Read The Docs --------------------------------------------------------
+
+# readthedocs.org uses their theme by default, so no need to specify it
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
