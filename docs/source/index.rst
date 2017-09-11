@@ -6,6 +6,8 @@
 Minimal docs
 ============
 
+The source for these minimal docs can be found on `GitHub <https://github.com/willingc/doc-basics>`_.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
