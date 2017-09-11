@@ -36,9 +36,12 @@ python3 -m pip install -r docs/requirements_docs.txt
 
 ## Build documentation
 
-Clean out prior doc builds: `make clean`
+From the `docs` directory:
 
-Build docs (in html format): `make html`
-
-View docs: `open _build/html/index.html`
+| Task | Command |
+| ---- | :-----: |
+| Clean out prior doc builds | `make clean` |
+| Build docs (in html format) | `make html` |
+| Check links in docs | `make linkcheck` |
+| View docs | `open _build/html/index.html` |
 
